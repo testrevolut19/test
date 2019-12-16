@@ -1,0 +1,29 @@
+group 'revolut-test'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories { jcenter() }
+
+    dependencies { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" }
+}
+
+apply plugin: 'kotlin'
+
+repositories { jcenter() }
+
+dependencies {
+    implementation group: "ch.qos.logback", name: "logback-classic", version: logback_version
+    implementation group: "com.h2database", name: "h2", version: h2_version
+    implementation group: "org.jetbrains.exposed", name: "exposed-jdbc", version: exposed_version
+    implementation group: "com.zaxxer", name: "HikariCP", version: hicari_version
+    implementation group: "io.ktor", name: "ktor-jackson", version: ktor_version
+    implementation group: "io.ktor", name: "ktor-server-cio", version: ktor_version
+    implementation group: "io.ktor", name: "ktor-client-cio", version: ktor_version
+    implementation group: "org.jetbrains.kotlin", name: "kotlin-stdlib-jdk8", version: kotlin_version
+
+    testImplementation "io.ktor:ktor-server-test-host:$ktor_version"
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.2'
+}
+
+compileKotlin { kotlinOptions.jvmTarget = JavaVersion.VERSION_11 }
+compileTestKotlin { kotlinOptions.jvmTarget = JavaVersion.VERSION_11 }
